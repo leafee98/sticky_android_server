@@ -83,6 +83,8 @@ public class Serve implements Runnable {
             } else {
                 objectOut.writeInt(Instruction.ERR_CODE);
             }
+            objectOut.flush();
+            logger.log(Level.INFO, String.format("update: %s", d.toString()));
         } catch (ClassNotFoundException e) {
             logger.log(Level.SEVERE, "the class Detail not found while reading updated sticky.", e);
         }
@@ -95,6 +97,7 @@ public class Serve implements Runnable {
         } else {
             objectOut.writeInt(Instruction.ERR_CODE);
         }
+        objectOut.flush();
     }
 
     private void serve() {

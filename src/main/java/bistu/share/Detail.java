@@ -1,8 +1,9 @@
 package bistu.share;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Detail {
+public class Detail implements Serializable {
     private long id;
     private Timestamp modifyTime;
     private String fullText;
@@ -24,7 +25,7 @@ public class Detail {
 
     @Override
     public String toString() {
-        return String.format("Detail: id=%ld, modifyTime=%s, fullText=%s", modifyTime.toString(), fullText);
+        return String.format("Detail: id=%d, modifyTime=%s, fullText=%s", this.id, modifyTime.toString(), fullText);
     }
     
 }

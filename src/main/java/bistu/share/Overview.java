@@ -1,8 +1,9 @@
 package bistu.share;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Overview {
+public class Overview implements Serializable {
     private long id;
     private Timestamp modifyTime;
     private String summary;

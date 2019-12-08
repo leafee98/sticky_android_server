@@ -11,7 +11,7 @@ import bistu.db.DbUtil;
 public class MainServer {
 
     private static final String LOGGER_NAME = "sticky_android server";
-    private static final int SERVE_PORT = 1234;
+    private static final int SERVE_PORT = 12345;
 
     private Logger logger;
     private ServerSocket ssocket;

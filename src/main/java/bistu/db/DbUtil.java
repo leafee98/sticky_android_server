@@ -120,12 +120,16 @@ public class DbUtil {
 
         Detail d = null;
         try {
-            d = new Detail(
-                rs.getLong(COL_ID),
-                rs.getTimestamp(COL_MODIFY),
-                rs.getString(COL_FULL_TEXT)
-            );
-            logger.log(Level.INFO, String.format("detail got: %s", d.toString()));
+            if (rs.next()) {
+                d = new Detail(
+                    rs.getLong(COL_ID),
+                    rs.getTimestamp(COL_MODIFY),
+                    rs.getString(COL_FULL_TEXT)
+                );
+                logger.log(Level.INFO, String.format("detail got: %s.", d.toString()));
+            } else {
+                logger.log(Level.SEVERE, String.format("did not find the sticky with id: %d", id));
+            }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "error occurred while retrieving data from resultSet.", e);
             return null;
@@ -178,7 +182,9 @@ public class DbUtil {
         long id = -1;
         try {
             if (s_insertSticky.executeUpdate() > 0) {
-                id = s_lastInsertId.executeQuery().getLong(1);
+                ResultSet idInserted = s_lastInsertId.executeQuery();
+                idInserted.next();
+                id = idInserted.getLong(1);
                 logger.log(Level.INFO, String.format("inserted id=%d.", id));
             }
         } catch (SQLException e) {
