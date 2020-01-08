@@ -35,8 +35,7 @@ public class Serve implements Runnable {
     }
 
     private void serve_SERVE_END() throws IOException {
-        objectIn.close();
-        objectOut.close();
+        socket.close();
         this.fine = false;
         logger.log(Level.INFO, "received SERVE_END sign, finish service.");
     }
